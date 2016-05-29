@@ -9,7 +9,7 @@ RUN sudo echo "Asia/Tokyo" > /etc/timezone && \
 WORKDIR /root
 
 # jre
-RUN  sudo apt-get update -y && sudo apt-get install -y default-jre wget
+RUN  sudo apt-get update -y && sudo apt-get install -y openjdk-7-jre wget
 
 # 安装ZooKeeper 3.4.8
 RUN wget http://ftp.jaist.ac.jp/pub/apache/zookeeper/zookeeper-3.4.8/zookeeper-3.4.8.tar.gz && \
@@ -18,9 +18,5 @@ RUN wget http://ftp.jaist.ac.jp/pub/apache/zookeeper/zookeeper-3.4.8/zookeeper-3
     mv /usr/local/bin/zookeeper-3.4.8/conf/zoo_sample.cfg /usr/local/bin/zookeeper-3.4.8/conf/zoo.cfg 
 
 ENV PATH=$PATH:/usr/local/bin/zookeeper-3.4.8/bin
-
-
-# COPY init.sh /usr/local/bin/init.sh
-# RUN chmod +x /usr/local/bin/init.sh
 
 CMD ["zkServer.sh", "start-foreground"]
